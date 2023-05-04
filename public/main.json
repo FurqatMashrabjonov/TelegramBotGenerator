@@ -1,0 +1,28 @@
+{
+    "functions": [
+        {
+            "name": "getData",
+            "actions": [
+                {
+                    "nimadur": 23
+                }
+            ],
+            "arguments": [
+                "chat_id",
+                "text"
+            ]
+        },
+        {
+            "name": "getData2",
+            "actions": [
+                {
+                    "qaysidur": 23
+                }
+            ],
+            "arguments": [
+                "chat_id",
+                "message"
+            ]
+        }
+    ]
+}
