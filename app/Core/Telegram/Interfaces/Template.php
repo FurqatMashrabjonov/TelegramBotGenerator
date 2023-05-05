@@ -10,4 +10,6 @@ interface Template
      */
     public function fill(): string;
 
+//    public function argumentsToString($arguments): string;
+
 }

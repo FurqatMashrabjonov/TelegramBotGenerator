@@ -24,5 +24,15 @@
                 "message"
             ]
         }
+    ],
+    "commands": [
+        {
+            "command": "start",
+            "actions": []
+        },
+        {
+            "command": "ping",
+            "actions": []
+        }
     ]
 }

@@ -2,7 +2,9 @@
 
 namespace App\Core\Telegram;
 
+use App\Core\Telegram\Parsers\CommandParser;
 use App\Core\Telegram\Parsers\FunctionParser;
+use App\Core\Telegram\Templates\CommandTemplate;
 
 class Parser
 {
@@ -19,7 +21,8 @@ class Parser
     public function parse(): array
     {
         $functions = (new FunctionParser($this->parsedJson->functions))->build();
-        return $functions;
+        $commands = (new CommandParser($this->parsedJson->commands))->build();
+        return [$functions, $commands];
     }
 
 }

@@ -13,7 +13,9 @@ class FunctionTemplate implements Template
     public array $actions;
     public string $lang;
     public string $template = '';
-    public function __construct(string $name, array $arguments, array $actions, $lang = 'php'){
+
+    public function __construct(string $name, array $arguments, array $actions, $lang = 'php')
+    {
         $this->name = $name;
         $this->actions = $actions;
         $this->arguments = $arguments;
@@ -22,23 +24,20 @@ class FunctionTemplate implements Template
         $this->template = $this->fill();
     }
 
+    public function argumentsToString($arguments): string
+    {
+        return argumentsToString($arguments);
+    }
+
     public function fill(): string
     {
-
         $args = [
-          'name' => $this->name,
-          'arguments' => '',
-          'body' => 'nimadur'
+            'name' => $this->name,
+            'arguments' => $this->argumentsToString($this->arguments),
+            'body' => 'nimadur'
         ];
 
-        $count = count($this->arguments);
-        foreach ($this->arguments as $key => $argument){
-            $args['arguments'] .=  '$' . $argument;
-            if ($count - $key != 1)
-                $args['arguments'] .= ', ';
-        }
-
-      return Filler::fill(getTemplate('function', $this->lang), $args);
+        return Filler::fill(getTemplate('function', $this->lang), $args);
     }
 
 }
