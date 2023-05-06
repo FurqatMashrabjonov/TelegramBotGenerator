@@ -1,3 +1,7 @@
 <?php
 
-return 'dssssssssv';
+return 'class MainFunction
+{
+   {{functions}}
+}
+$function = new MainFunction();';

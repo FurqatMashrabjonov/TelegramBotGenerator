@@ -2,6 +2,8 @@
 
 namespace App\Core\Telegram;
 
+use App\Core\Telegram\Generators\FunctionGenerator;
+
 class Handle
 {
     protected object $parsedJson;
@@ -9,9 +11,10 @@ class Handle
         $this->parsedJson = json_decode(file_get_contents($json));
     }
 
-    public function build(): array
+    public function build(): string
     {
-        return (new Parser($this->parsedJson))->parse();
+        $readyContents = (new Parser($this->parsedJson))->parse();
+        return (new FunctionGenerator($readyContents['functions']))->generate();
     }
 
 }

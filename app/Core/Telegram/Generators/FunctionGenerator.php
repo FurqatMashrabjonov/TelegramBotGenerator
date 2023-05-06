@@ -3,6 +3,7 @@
 namespace App\Core\Telegram\Generators;
 
 
+use App\Core\Telegram\Helpers\Filler;
 use App\Core\Telegram\Interfaces\Generator;
 
 class FunctionGenerator implements Generator
@@ -14,6 +15,11 @@ class FunctionGenerator implements Generator
     }
     public function generate(): string
     {
-       return getTemplate('layouts/function');
+       $template = getTemplate('layouts/function');
+       $body = '';
+       foreach ($this->functions as $function){
+           $body .= $function->template . PHP_EOL . '   ';
+       }
+       return Filler::fill($template, ['functions' => $body]);
     }
 }

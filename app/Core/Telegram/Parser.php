@@ -22,7 +22,7 @@ class Parser
     {
         $functions = (new FunctionParser($this->parsedJson->functions))->build();
         $commands = (new CommandParser($this->parsedJson->commands))->build();
-        return [$functions, $commands];
+        return ['functions' => $functions, 'commands' => $commands];
     }
 
 }

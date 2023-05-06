@@ -19,6 +19,7 @@ class FunctionTemplate implements Template
         $this->name = $name;
         $this->actions = $actions;
         $this->arguments = $arguments;
+        array_unshift($this->arguments, 'bot');
         $this->lang = $lang;
 
         $this->template = $this->fill();

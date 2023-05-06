@@ -1,6 +1,5 @@
 <?php
 
-return 'function {{name}}({{arguments}}){
-    {{body}}
-};
-';
+return 'public function {{name}}({{arguments}}){
+      {{body}}
+   }';
