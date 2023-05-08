@@ -13,6 +13,7 @@ class FunctionTemplate implements Template
     public array $actions;
     public string $lang;
     public string $template = '';
+    public string $actionsTemplate = '';
 
     public function __construct(string $name, array $arguments, array $actions, $lang = 'php')
     {
@@ -22,6 +23,7 @@ class FunctionTemplate implements Template
         array_unshift($this->arguments, 'bot');
         $this->lang = $lang;
 
+        $this->makeActions();
         $this->template = $this->fill();
     }
 
@@ -35,10 +37,16 @@ class FunctionTemplate implements Template
         $args = [
             'name' => $this->name,
             'arguments' => $this->argumentsToString($this->arguments),
-            'body' => 'nimadur'
+            'body' => $this->actionsTemplate
         ];
 
         return Filler::fill(getTemplate('function', $this->lang), $args);
     }
 
+    public function makeActions(): void{
+        foreach ($this->actions as $action){
+            $className = 'App\\Core\\Telegram\\Templates\\' . ucfirst($action->name).'Template';
+            $this->actionsTemplate .= (new $className((array)$action->arguments))->template . PHP_EOL . '      ';
+        }
+    }
 }

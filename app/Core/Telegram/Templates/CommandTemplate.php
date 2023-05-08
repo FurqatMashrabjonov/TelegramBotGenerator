@@ -11,6 +11,7 @@ class CommandTemplate implements Template
     public array $actions;
     public string $lang;
     public string $template;
+    public string $actionsTemplate = '';
 
     public function __construct(string $command, array $actions, string $lang = 'php')
     {
@@ -18,6 +19,7 @@ class CommandTemplate implements Template
         $this->command = $command;
         $this->lang = $lang;
 
+        $this->makeActions();
         $this->template = $this->fill();
     }
     public function fill(): string
@@ -26,10 +28,17 @@ class CommandTemplate implements Template
         $args = [
             'command' => $this->command,
 //            'actions' => ,
-            'body' => 'dasdasdssa'
+            'body' => $this->actionsTemplate
         ];
 
         return Filler::fill(getTemplate('command', $this->lang), $args);
+    }
+
+    public function makeActions(): void{
+        foreach ($this->actions as $action){
+            $className = 'App\\Core\\Telegram\\Templates\\' . ucfirst($action->name).'Template';
+            $this->actionsTemplate .= (new $className((array)$action->arguments))->template . PHP_EOL . '      ';
+        }
     }
 
 }

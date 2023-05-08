@@ -9,7 +9,7 @@ use App\Core\Telegram\Interfaces\Generator;
 class CommandGenerator implements Generator
 {
     public array $commands;
-
+    public string $template;
     public function __construct(array $commands){
         $this->commands = $commands;
     }

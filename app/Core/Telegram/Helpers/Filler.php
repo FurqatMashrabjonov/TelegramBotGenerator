@@ -14,10 +14,8 @@ class Filler
      */
     public static function fill($template, $args): string
     {
-        Log::debug(json_encode($args));
         foreach (array_keys($args) as $key) {
             $tmp = explode('{{' . $key . '}}', $template);
-            Log::debug($key);
             $template = $tmp[0] . $args[$key] . $tmp[1];
         }
         return $template;

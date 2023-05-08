@@ -4,45 +4,45 @@
             "name": "getData",
             "actions": [
                 {
-                    "nimadur": 23
-                }
-            ],
-            "arguments": [
-                "chat_id",
-                "text"
-            ]
-        },
-        {
-            "name": "getData2",
-            "actions": [
+                    "name": "sendMessage",
+                    "arguments": {
+                        "chat_id": "-3424234",
+                        "text": "Salom"
+                    }
+                },
                 {
-                    "qaysidur": 23
+                    "name": "sendChatAction",
+                    "arguments": {
+                        "chat_id": "-3424234",
+                        "action": "typing"
+                    }
                 }
             ],
             "arguments": [
-                "chat_id",
-                "message"
-            ]
-        },
-        {
-            "name": "sendMessage",
-            "actions": [
-                {
-                    "qaysidur": 23
-                }
-            ],
-            "arguments": [
-                "chat_id",
-                "message",
-                "token",
-                "argument"
+                "value2",
+                "value4"
             ]
         }
     ],
     "commands": [
         {
             "command": "start",
-            "actions": []
+            "actions": [
+                {
+                    "name": "sendChatAction",
+                    "arguments": {
+                        "chat_id": "-3424234",
+                        "action": "typing2"
+                    }
+                },
+                {
+                    "name": "sendChatAction",
+                    "arguments": {
+                        "chat_id": "-3424234",
+                        "action": "typing2"
+                    }
+                }
+            ]
         },
         {
             "command": "ping",

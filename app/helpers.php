@@ -21,3 +21,15 @@ function argumentsToString($arguments): string{
     }
     return $str;
 }
+
+function argumentsToStringWithValue($arguments): string{
+    $str = '';
+    $i = 0;
+    foreach ($arguments as $key => $argument) {
+        $str .= '$' . $key . ' = ' . ((gettype($argument) == 'string') ? '"' . $argument . '"' : $argument);
+        if (count($arguments) - $i != 1)
+            $str .= ', ';
+        $i++;
+    }
+    return $str;
+}

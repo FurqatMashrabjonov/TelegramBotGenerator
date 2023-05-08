@@ -1,3 +1,3 @@
 <?php
 
-return '$bot->sendMessage({{arguments}});';
+return '$bot->sendMessage({{chat_id}}, "{{text}}");';

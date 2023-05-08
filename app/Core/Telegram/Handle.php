@@ -2,8 +2,9 @@
 
 namespace App\Core\Telegram;
 
-use App\Core\Telegram\Generators\CommandGenerator;
 use App\Core\Telegram\Generators\FunctionGenerator;
+use App\Core\Telegram\Templates\Layouts\MainTemplate;
+use App\Core\Telegram\Templates\SendMessageTemplate;
 
 class Handle
 {
@@ -15,8 +16,7 @@ class Handle
     public function build(): string
     {
         $readyContents = (new Parser($this->parsedJson))->parse();
-//        return (new FunctionGenerator($readyContents['functions']))->generate();
-        return (new Generator())->command($readyContents['commands']);
+        return (new MainTemplate([(new Generator())->command($readyContents['commands'])], 'adk;sdk;akdasldas;dasld;'))->fill();
     }
 
 }
