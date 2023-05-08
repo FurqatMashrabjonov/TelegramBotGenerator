@@ -18,7 +18,7 @@ class FunctionGenerator implements Generator
        $template = getTemplate('layouts/function');
        $body = '';
        foreach ($this->functions as $function){
-           $body .= $function->template . PHP_EOL . '   ';
+           $body .= $function->template . PHP_EOL . PHP_EOL . '   ';
        }
        return Filler::fill($template, ['functions' => $body]);
     }

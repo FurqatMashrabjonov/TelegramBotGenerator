@@ -2,6 +2,7 @@
 
 namespace App\Core\Telegram;
 
+use App\Core\Telegram\Generators\CommandGenerator;
 use App\Core\Telegram\Generators\FunctionGenerator;
 
 class Handle
@@ -14,7 +15,8 @@ class Handle
     public function build(): string
     {
         $readyContents = (new Parser($this->parsedJson))->parse();
-        return (new FunctionGenerator($readyContents['functions']))->generate();
+//        return (new FunctionGenerator($readyContents['functions']))->generate();
+        return (new Generator())->command($readyContents['commands']);
     }
 
 }

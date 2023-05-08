@@ -23,6 +23,20 @@
                 "chat_id",
                 "message"
             ]
+        },
+        {
+            "name": "sendMessage",
+            "actions": [
+                {
+                    "qaysidur": 23
+                }
+            ],
+            "arguments": [
+                "chat_id",
+                "message",
+                "token",
+                "argument"
+            ]
         }
     ],
     "commands": [
