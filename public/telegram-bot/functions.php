@@ -11,4 +11,4 @@ class MainFunction
    
 }
 
-$function = new MainFunction();
+return new MainFunction();

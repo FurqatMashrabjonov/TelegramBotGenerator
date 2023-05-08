@@ -3,7 +3,7 @@
 return '<?php
 
 require_once "vendor/autoload.php";
-require_once "functions.php";
+$function = require_once "functions.php";
 
 try {
     $bot = new \TelegramBot\Api\Client("{{token}}");

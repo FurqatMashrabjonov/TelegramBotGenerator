@@ -7,4 +7,4 @@ class MainFunction
    {{functions}}
 }
 
-$function = new MainFunction();';
+return new MainFunction();';

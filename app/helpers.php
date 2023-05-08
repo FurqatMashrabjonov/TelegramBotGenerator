@@ -11,7 +11,8 @@ function getTemplate(string $name, string $lang = 'php'): string
     return require public_path("telegram-templates/$lang/$name.php");
 }
 
-function argumentsToString($arguments): string{
+function argumentsToString($arguments): string
+{
     $str = '';
     $count = count($arguments);
     foreach ($arguments as $key => $argument) {
@@ -22,7 +23,8 @@ function argumentsToString($arguments): string{
     return $str;
 }
 
-function argumentsToStringWithValue($arguments): string{
+function argumentsToStringWithValue($arguments): string
+{
     $str = '';
     $i = 0;
     foreach ($arguments as $key => $argument) {
@@ -34,11 +36,19 @@ function argumentsToStringWithValue($arguments): string{
     return $str;
 }
 
-function argumentsToStringOnlyValue($arguments): string{
+function argumentsToStringOnlyValue($arguments): string
+{
     $str = '';
     foreach ($arguments as $key => $argument) {
-        $str .= (gettype($argument) == 'string') ? '"' . $argument .'"' : $argument;
-            $str .= ', ';
+        if (gettype($argument) == 'string') {
+            $str .= '"' . $argument . '"';
+        } else if (gettype($argument) == 'boolean') {
+            $str .= $argument ? 'true' : 'false';
+        } else {
+            $str .= $argument;
+        }
+        $str .= ', ';
     }
+
     return $str;
 }
