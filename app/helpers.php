@@ -33,3 +33,12 @@ function argumentsToStringWithValue($arguments): string{
     }
     return $str;
 }
+
+function argumentsToStringOnlyValue($arguments): string{
+    $str = '';
+    foreach ($arguments as $key => $argument) {
+        $str .= (gettype($argument) == 'string') ? '"' . $argument .'"' : $argument;
+            $str .= ', ';
+    }
+    return $str;
+}

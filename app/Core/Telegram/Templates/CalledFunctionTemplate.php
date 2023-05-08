@@ -5,10 +5,11 @@ namespace App\Core\Telegram\Templates;
 use App\Core\Telegram\Helpers\Filler;
 use App\Core\Telegram\Interfaces\Template;
 
-class SendChatActionTemplate implements Template
+class CalledFunctionTemplate implements Template
 {
 
     public array $arguments;
+
     public string $template;
     public ?string $from;
 
@@ -22,6 +23,13 @@ class SendChatActionTemplate implements Template
 
     public function fill(): string
     {
-        return Filler::fill(getTemplate('sendChatAction'), $this->arguments);
+        $args = [
+            'name' => match ($this->from) {
+                    'function' => '$this->',
+                    'command'  => '$function->'
+                } . $this->arguments['name'],
+            'arguments' => argumentsToStringOnlyValue($this->arguments['arguments'])
+        ];
+        return Filler::fill(getTemplate('calledFunction'), $args);
     }
 }

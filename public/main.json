@@ -4,12 +4,16 @@
             "name": "getData",
             "actions": [
                 {
-                    "name": "sendMessage",
+                    "name": "calledFunction",
                     "arguments": {
-                        "chat_id": "-3424234",
-                        "text": "Salom"
+                        "name": "getName",
+                        "arguments": {
+                            "id": 23423423,
+                            "name": "Furqat"
+                        }
                     }
                 },
+
                 {
                     "name": "sendChatAction",
                     "arguments": {
@@ -39,14 +43,25 @@
                     "name": "sendChatAction",
                     "arguments": {
                         "chat_id": "-3424234",
-                        "action": "typing2"
+                        "action": "typing"
                     }
                 }
             ]
         },
         {
             "command": "ping",
-            "actions": []
+            "actions": [
+                {
+                    "name": "calledFunction",
+                    "arguments": {
+                        "name": "getData",
+                        "arguments": {
+                            "name": "Furqat",
+                            "is_uzbek": true
+                        }
+                    }
+                }
+            ]
         }
     ]
 }

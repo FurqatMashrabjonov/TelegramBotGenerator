@@ -37,7 +37,7 @@ class CommandTemplate implements Template
     public function makeActions(): void{
         foreach ($this->actions as $action){
             $className = 'App\\Core\\Telegram\\Templates\\' . ucfirst($action->name).'Template';
-            $this->actionsTemplate .= (new $className((array)$action->arguments))->template . PHP_EOL . '      ';
+            $this->actionsTemplate .= (new $className((array)$action->arguments, 'command'))->template . PHP_EOL . '      ';
         }
     }
 

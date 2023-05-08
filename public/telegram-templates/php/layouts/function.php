@@ -1,6 +1,8 @@
 <?php
 
-return 'class MainFunction
+return '<?php
+
+class MainFunction
 {
    {{functions}}
 }

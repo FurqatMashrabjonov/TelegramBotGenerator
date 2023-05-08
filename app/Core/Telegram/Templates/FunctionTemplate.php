@@ -10,16 +10,17 @@ class FunctionTemplate implements Template
 
     public string $name;
     public array $arguments;
-    public array $actions;
+    public ?array $actions;
     public string $lang;
     public string $template = '';
     public string $actionsTemplate = '';
 
-    public function __construct(string $name, array $arguments, array $actions, $lang = 'php')
+    public function __construct(string $name, ?array $arguments, array $actions, $lang = 'php')
     {
         $this->name = $name;
         $this->actions = $actions;
         $this->arguments = $arguments;
+        array_unshift($this->arguments, 'message');
         array_unshift($this->arguments, 'bot');
         $this->lang = $lang;
 
@@ -36,7 +37,7 @@ class FunctionTemplate implements Template
     {
         $args = [
             'name' => $this->name,
-            'arguments' => $this->argumentsToString($this->arguments),
+            'arguments' => $this->argumentsToString($this->arguments ?? []),
             'body' => $this->actionsTemplate
         ];
 
@@ -46,7 +47,7 @@ class FunctionTemplate implements Template
     public function makeActions(): void{
         foreach ($this->actions as $action){
             $className = 'App\\Core\\Telegram\\Templates\\' . ucfirst($action->name).'Template';
-            $this->actionsTemplate .= (new $className((array)$action->arguments))->template . PHP_EOL . '      ';
+            $this->actionsTemplate .= (new $className((array)$action->arguments, 'function'))->template . PHP_EOL . '      ';
         }
     }
 }
